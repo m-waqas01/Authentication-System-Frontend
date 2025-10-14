@@ -18,7 +18,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://mern-auth-backend-ten.vercel.app/api/register",
+        "https://mern-auth-backend-delta.vercel.app/api/register",
         formData
       );
       alert("Signup successful! Please login.");
