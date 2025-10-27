@@ -20,7 +20,7 @@ const Dashboard = () => {
         `${
           process.env.REACT_APP_API_BASE_URL ||
           "https://authentication-system-brown.vercel.app"
-        }/api/auth/me`,
+        }/auth/me`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
