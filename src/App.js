@@ -2,8 +2,9 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Header/Navbar";
 import Login from "./auth/Login.js";
-import Signup from "./auth/Signup.js";
+
 import Dashboard from "./Dashboard/Dashboard.js";
+import Signup from "./auth/Signup.js";
 
 function App() {
   return (

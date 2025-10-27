@@ -8,7 +8,12 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
   const navigate = useNavigate();
+
+  // ✅ For Create React App (CRA)
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,15 +21,19 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await axios.post(
-        "https://waqas-mern-auth-backend.vercel.app/api/register",
+      // ✅ Use full backend URL
+      const response = await axios.post(
+        `${API_BASE_URL}/auth/signup`,
         formData
       );
+
       alert("Signup successful! Please login.");
       navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.error || "Signup failed");
+      console.error(err);
+      alert(err.response?.data?.message || "Signup failed");
     }
   };
 
@@ -35,6 +44,7 @@ const Signup = () => {
         className="bg-white p-6 rounded shadow-md w-96"
       >
         <h2 className="text-xl font-bold mb-4">Signup</h2>
+
         <input
           type="text"
           name="name"
@@ -44,6 +54,7 @@ const Signup = () => {
           onChange={handleChange}
           required
         />
+
         <input
           type="email"
           name="email"
@@ -53,6 +64,7 @@ const Signup = () => {
           onChange={handleChange}
           required
         />
+
         <input
           type="password"
           name="password"
@@ -62,6 +74,7 @@ const Signup = () => {
           onChange={handleChange}
           required
         />
+
         <button
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700"
