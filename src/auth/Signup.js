@@ -11,7 +11,6 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  // ✅ For Create React App (CRA)
   const API_BASE_URL =
     process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
@@ -23,7 +22,6 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      // ✅ Use full backend URL
       const response = await axios.post(
         `${API_BASE_URL}/auth/signup`,
         formData
