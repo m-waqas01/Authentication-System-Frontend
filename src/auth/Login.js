@@ -99,18 +99,20 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // Include credentials to allow cookies (for refresh token if sent via cookie)
+      // Include credentials if backend sets refresh token in cookies
       const res = await axios.post(`${API_BASE_URL}/auth/login`, formData, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
 
-      const { token, refreshToken, user } = res.data;
+      console.log("Login response:", res.data); // ✅ Debug log
+
+      const { accessToken, refreshToken, user } = res.data;
 
       // ✅ Check if tokens are received
-      if (token && refreshToken) {
+      if (accessToken && refreshToken) {
         // Save both tokens locally
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("user", JSON.stringify(user));
 
@@ -130,15 +132,17 @@ const Login = () => {
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded shadow-md w-96"
+        className="bg-white p-6 rounded-lg shadow-lg w-96"
       >
-        <h2 className="text-xl font-bold mb-4 text-center">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
+          Login
+        </h2>
 
         <input
           type="email"
           name="email"
           placeholder="Email"
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-3 mb-3 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
           value={formData.email}
           onChange={handleChange}
           required
@@ -148,7 +152,7 @@ const Login = () => {
           type="password"
           name="password"
           placeholder="Password"
-          className="w-full border p-2 mb-4 rounded"
+          className="w-full border p-3 mb-4 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
           value={formData.password}
           onChange={handleChange}
           required
@@ -156,7 +160,7 @@ const Login = () => {
 
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded w-full hover:bg-green-700 transition"
+          className="bg-green-600 text-white px-4 py-2 rounded w-full hover:bg-green-700 transition duration-200"
         >
           Login
         </button>
