@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-6 text-center">
+      <section className="bg-slate-100 py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
             Welcome to MERN Auth System
@@ -17,13 +17,13 @@ const Home = () => {
           <div className="space-x-4">
             <Link
               to="/signup"
-              className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition"
+              className="bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition"
             >
               Get Started
             </Link>
             <Link
               to="/login"
-              className="bg-transparent border border-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-blue-700 transition"
+              className="bg-transparent border border-blue-500 font-semibold px-6 py-3 rounded-lg hover:bg-gray-400 hover:text-blue-700 transition"
             >
               Login
             </Link>
